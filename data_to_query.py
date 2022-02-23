@@ -13,6 +13,12 @@ def check_null(value):
     else:
         return value
 
+def check_null_return_float(value):
+    if value == "nan":
+        return "NULL"
+    else:
+        return round(float(value),2)
+
 
 def check_value(value):
     if value == "NULL":
@@ -33,9 +39,9 @@ for ind in df.index:
 
     kcal = (protein*4)+(carbs*4)+(fat*9)
 
-    salt = check_null(str(df["salt"][ind]))
+    salt = check_null_return_float(str(df["salt"][ind]))
     foodtype_id = check_null(str(df["foodtype_id"][ind]))
-    sql_query = f"({id},'{food_name}', {check_value(amount)}, {protein}, {carbs}, {fat}, {kcal}, {salt}, {check_value(foodtype_id)}),"
+    sql_query = f"({id},'{food_name}', {check_value(amount)}, {protein}, {carbs}, {fat}, {int(kcal)}, {salt}, {check_value(foodtype_id)}),"
     sql_query_list.append(sql_query)
 
 
