@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_excel("data.xlsx", sheet_name="data_food")
+df = pd.read_excel("../data.xlsx", sheet_name="data_food")
 
 queries = []
 food_table = f"CREATE TABLE Foods ( id serial primary key, foodname VARCHAR(64), amount_g INT, protein FLOAT, carbs FLOAT, fat FLOAT, kcal INT, salt FLOAT, foodtype_id INT);"
@@ -52,7 +52,7 @@ last_query = add_semicolon
 sql_query_list.pop()
 sql_query_list.append(last_query)
 
-with open('data_to_sql_query.sql', 'w') as f:
+with open('./src/data_to_sql_query.sql', 'w') as f:
     f.write(f"{food_table}\n")
     f.write(f"{full_query}\n")
     for i in sql_query_list:
