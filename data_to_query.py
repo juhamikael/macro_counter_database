@@ -53,7 +53,7 @@ sql_query_list.pop()
 sql_query_list.append(last_query)
 
 with open('data_to_sql_query.sql', 'w') as f:
-    f.write(food_table)
-    f.write(full_query)
+    f.write(f"{food_table}\n")
+    f.write(f"{full_query}\n")
     for i in sql_query_list:
-        f.write(i)
+        f.write(f"{i}\n")
