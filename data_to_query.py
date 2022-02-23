@@ -3,7 +3,7 @@ import pandas as pd
 df = pd.read_excel("data.xlsx", sheet_name="data_food")
 
 queries = []
-
+food_table = f"CREATE TABLE Foods ( id serial primary key, foodname VARCHAR(64), amount_g INT, protein FLOAT, carbs FLOAT, fat FLOAT, kcal INT, salt FLOAT, foodtype_id INT);"
 full_query = "INSERT INTO Foods (id, foodname, amount_g, protein, carbs, fat, kcal, salt, foodtype_id) VALUES "
 
 
@@ -47,11 +47,7 @@ sql_query_list.pop()
 sql_query_list.append(last_query)
 
 with open('data_to_sql_query.sql', 'w') as f:
+    f.write(food_table)
     f.write(full_query)
     for i in sql_query_list:
         f.write(i)
-
-
-food_table = f"CREATE TABLE Foods ( id serial primary key, foodname VARCHAR(64), amount_g INT, protein FLOAT, carbs FLOAT, department_id INT );"
-
-#foodname, amount_g, protein, carbs, fat, kcal, salt, foodtype_id
